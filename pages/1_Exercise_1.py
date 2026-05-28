@@ -43,11 +43,11 @@ def sort_generated_numbers():
     # store in session_state
     ### your code ###
 
-    numbers = numbers[:-1]
-    numbers = numbers.split(',')
-    for i, num in enumerate(numbers):
-        numbers[i] = int(num)
-    array_int: list[int] = numbers
+    array_str = numbers[:-1]
+    array_str = array_str.split(',')
+    for i, num in enumerate(array_str):
+        array_str[i] = int(num)
+    array_int: list[int] = array_str
     my_sort(array_int)
     array_str: str = create_string(array_int)
     st.session_state['sorted_numbers'] = array_str

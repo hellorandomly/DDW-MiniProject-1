@@ -26,6 +26,12 @@ def sort_numbers():
 
     ### your code ###
 
+    numbers_int  = numbers.replace('.','')
+    numbers_int = numbers_int.split(',')
+    for i, num in enumerate(numbers_int):
+        numbers_int[i] = int(num)
+    my_sort(numbers_int)
+    array_str: str = create_string(numbers_int)
     st.session_state['sorted_numbers'] = array_str
 
 
@@ -54,3 +60,6 @@ st.text_input("Enter integers separated by comma:", key="numbers")
 # st.button(your code here)
 
 ### your code ###
+st.button("Sort", on_click=sort_numbers)
+st.write("Sorted Numbers:", st.session_state['sorted_numbers'])
+st.button("Clear", on_click=clear)
