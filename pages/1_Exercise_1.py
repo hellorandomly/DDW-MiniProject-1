@@ -16,13 +16,13 @@ def generate():
     # array: list[int] = None
 
     # call create_string() function to convert the list to a single string
-    # array_str: str = Nones
+    # array_str: str = Noness
 
     # store into session_state
     ### your code ###
 
-    array: list[int] = gen_random_int()
-    array_str: str = str(array)
+    array: list[int] = gen_random_int(10, int(datetime.now().timestamp()))
+    array_str: str = create_string(array)
     st.session_state['numbers'] = array_str
 
 
@@ -43,6 +43,13 @@ def sort_generated_numbers():
     # store in session_state
     ### your code ###
 
+    numbers = numbers[:-1]
+    numbers = numbers.split(',')
+    for i, num in enumerate(numbers):
+        numbers[i] = int(num)
+    array_int: list[int] = numbers
+    my_sort(array_int)
+    array_str: str = create_string(array_int)
     st.session_state['sorted_numbers'] = array_str
 
 
@@ -73,6 +80,8 @@ st.write("Generated Numbers:", st.session_state['numbers'])
 # st.write(your code here)
 
 ### your code ###
+st.button("Sort", on_click=sort_generated_numbers)
+st.write("Sorted Numbers:", st.session_state['sorted_numbers'])
 
 # this code is provided to clear the page
 st.button("Clear", on_click=clear)
