@@ -16,7 +16,7 @@ def generate():
     # array: list[int] = None
 
     # call create_string() function to convert the list to a single string
-    # array_str: str = None
+    # array_str: str = Nones
 
     # store into session_state
     ### your code ###

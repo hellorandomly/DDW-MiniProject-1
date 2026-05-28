@@ -8,6 +8,8 @@ def gen_random_int(number: int, seed: int) -> list[int]:
     result = list(result)
     random.shuffle(result)
 
+    return result
+
 
 def create_string(array: list[int]) -> str:
     ### your code ###
