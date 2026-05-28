@@ -21,6 +21,8 @@ def generate():
     # store into session_state
     ### your code ###
 
+    array: list[int] = gen_random_int()
+    array_str: str = str(array)
     st.session_state['numbers'] = array_str
 
 
