@@ -1,1 +1,1 @@
-# Gnome Sort - in-place, stable sorting algorithm. time complexity is ok Worst: O(n²) Best: O(n) (already sorted)
+# Odd-Even Sort (Brick Sort) - in-place, stable sorting algorithm, time complexity is ok Worst: O(n²) Best: O(n) (already sorted)
