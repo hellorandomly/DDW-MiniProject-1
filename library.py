@@ -38,26 +38,3 @@ def my_sort(array):
             array[inner_index - 1] = second_number
             array[inner_index] = first_number
             inner_index -= 1
-
-def radix_sort_strings(arr):
-    string_len = len(arr[0])
-    
-    for char_index in range(string_len - 1, -1, -1):
-        n = len(arr)
-        output = [""] * n
-        count = [0] * 256
-
-        for string in arr:
-            char_code = ord(string[char_index]) 
-            count[char_code] += 1
-
-        for i in range(1, 256):
-            count[i] += count[i - 1]
-
-        for string_index in range(n - 1, -1, -1):
-            char_code = ord(arr[string_index][char_index])
-            output[count[char_code] - 1] = arr[string_index]
-            count[char_code] -= 1
-
-        for i in range(n):
-            arr[i] = output[i]
