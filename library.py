@@ -1,7 +1,6 @@
 import random
 
 def gen_random_int(number: int, seed: int) -> list[int]:
-    ### your code ###
     result = None
     random.seed(seed)
     result = range(0, number)
@@ -23,12 +22,7 @@ def create_string(array: list[int]) -> str:
             result += "."
     return result
 
-
-
 def my_sort(array):
-    ### your code ###
-    # insertion sort
-
     n = len(array)
     for outer_index in range(1, n):
         inner_index = outer_index
