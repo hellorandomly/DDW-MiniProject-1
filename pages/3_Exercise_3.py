@@ -49,10 +49,10 @@ def cycle_sort_strings(arr):
                 arr[pos], item = item, arr[pos]
                 
 def sort_outer_ls(sort_by):
-    list_of_lists = st.session_state.data
+    list_of_dicts = st.session_state.data
 
     # Gets the sort_by value for ever sublist (generates 1D list)
-    strings_to_sort = [row[sort_by] for row in list_of_lists]
+    strings_to_sort = [row[sort_by] for row in list_of_dicts]
     
     # Makes a copy (for reference)
     original_strings = list(strings_to_sort)
@@ -65,7 +65,7 @@ def sort_outer_ls(sort_by):
         # Find the earliest reference
         orig_index = original_strings.index(sorted_str)
         
-        sorted_outer.append(list_of_lists[orig_index])
+        sorted_outer.append(list_of_dicts[orig_index])
         
         # Prevent this index from being used again
         original_strings[orig_index] = None
@@ -109,10 +109,10 @@ with col1:
         submit()
 with col2:
     if st.button("Sort by ID", width='stretch'):
-        sort_outer_ls(0)
+        sort_outer_ls("ID")
 with col3:
     if st.button("Sort by name", width='stretch'):
-        sort_outer_ls(1)
+        sort_outer_ls("Name")
 with col4:
     if st.button("Clear", width='stretch'):
         clear()
