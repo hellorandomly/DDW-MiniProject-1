@@ -76,6 +76,8 @@ if 'id' not in st.session_state:
         st.session_state.id = ''
 if 'name' not in st.session_state:
         st.session_state.name = ''
+if 'price' not in st.session_state:
+    st.session_state.price = 0.0
 if 'error' not in st.session_state:
         st.session_state.error = None
 if 'data' not in st.session_state:
@@ -112,16 +114,19 @@ def submit():
     st.session_state.data.append({
         "ID": st.session_state.id,
         "Name": st.session_state.name,
-        "Price": 0.00,
-        "Image": None
+        "Price": st.session_state.price,
+        "Image": "assets/placeholder.png"
     })
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.text_input("Enter ID:", key="id")
 with col2:
     st.text_input("Enter Name:", key="name")
+with col3:
+    st.number_input("Enter Price:", key="price", min_value=0.0, format="%.2f")
+
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -144,7 +149,7 @@ st.divider()
 st.subheader("Product Gallery")
 
 # Filter out the manually added items (which have Image set to None)
-gallery_items = [item for item in st.session_state.data if item.get("Image") is not None]
+gallery_items = st.session_state.data
 
 # Create a 3-column layout
 cols = st.columns(3)
