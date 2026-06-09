@@ -115,7 +115,7 @@ def submit():
         "ID": st.session_state.id,
         "Name": st.session_state.name,
         "Price": st.session_state.price,
-        "Image": "assets/placeholder.png"
+        "Image": "assets/placeholder.jpg"
     })
 
 col1, col2, col3 = st.columns(3)
@@ -128,7 +128,7 @@ with col3:
     st.number_input("Enter Price:", key="price", min_value=0.0, format="%.2f")
 
 
-col1, col2, col3, col4 = st.columns(4)
+col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
     if st.button("Add", width='stretch'):
@@ -140,6 +140,9 @@ with col3:
     if st.button("Sort by name", width='stretch'):
         sort_outer_ls("Name")
 with col4:
+    if st.button("Sort by Price", width='stretch'):
+        sort_outer_ls("Price")
+with col5:
     if st.button("Clear", width='stretch'):
         clear()
 
