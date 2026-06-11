@@ -6,7 +6,48 @@ st.set_page_config(
     page_title="Exercise 3"
 )
 
-st.header("Exercise 3")
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #F1F4F9;
+    }
+
+    h2 {
+        color: #263238 !important;
+        font-family: 'Segoe UI';
+        font-weight: 700 !important;
+        text-align: center;
+        margin-bottom: 5px !important;
+    }
+
+    div[data-baseweb="input"], 
+    div[data-baseweb="input"] input {
+        background-color: #FFFFFF !important;
+    }
+
+    div[data-baseweb="input"] {
+        border-radius: 10px !important;
+        border: 2px solid #90CAF9;
+        background-color: #FFFFFF;
+    }
+
+    button[data-testid="stBaseButton-secondary"] {
+        background-color: #0087B7 !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 10px !important;
+        padding: 0.5rem 1rem !important;
+        font-weight: 500 !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        transition: background-color 0.2s ease;
+    }
+    """,
+    unsafe_allow_html=True
+)
+
+st.header("Product Spreadsheet")
 
 def clear():
     st.session_state['data'] = []
@@ -96,16 +137,16 @@ if 'data' not in st.session_state:
 
 def submit():
     if st.session_state.id == "":
-        st.error('Please enter the ID!')
+        st.session_state.error = 'Please enter the ID!'
         return
     if st.session_state.name == "":
-        st.error('Please enter the Name!')
+        st.session_state.error = 'Please enter the name!'
         return
 
     # Extract existing IDs to check for duplicates
     existing_ids = [item["ID"] for item in st.session_state.data]
     if st.session_state.id in existing_ids:
-        st.error('ID already exists!')
+        st.session_state.error = 'ID already exists!'
         return
 
     st.session_state.error = None
@@ -128,21 +169,26 @@ with col3:
     st.number_input("Enter Price:", key="price", min_value=0.0, format="%.2f")
 
 
-col1, col2, col3, col4, col5 = st.columns(5)
+col1, = st.columns(1)
 
 with col1:
     if st.button("Add", width='stretch'):
         submit()
-with col2:
+
+if st.session_state.error:
+    st.error(st.session_state.error)
+
+col1, col2, col3, col4 = st.columns(4)
+with col1:
     if st.button("Sort by ID", width='stretch'):
         sort_outer_ls("ID")
-with col3:
+with col2:
     if st.button("Sort by name", width='stretch'):
         sort_outer_ls("Name")
-with col4:
+with col3:
     if st.button("Sort by Price", width='stretch'):
         sort_outer_ls("Price")
-with col5:
+with col4:
     if st.button("Clear", width='stretch'):
         clear()
 
