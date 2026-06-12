@@ -59,6 +59,8 @@ def cycle_sort_strings(arr):
         item = arr[cycle_start]
         
         pos = cycle_start
+        # Cycle_start + 1, because anything behind is already
+        # in the right place (as a result of a previous cycle)
         for i in range(cycle_start + 1, n):
             if arr[i] < item:
                 pos += 1
@@ -79,11 +81,15 @@ def cycle_sort_strings(arr):
             # Terminates only when pos ends when cycle_start is replaced
 
             pos = cycle_start
+            # Range starts from cycle_start + 1, because the new 'item'
+            # is guaranteed to be less than the cycle_start value since they swapped
             for i in range(cycle_start + 1, n):
                 if arr[i] < item:
                     pos += 1
-                    
-            while item == arr[pos]:
+
+            # No same position check needed
+
+            while item == arr[pos]: 
                 pos += 1
                 
             if item != arr[pos]:
@@ -206,6 +212,6 @@ cols = st.columns(3)
 # Loop through and draw the images
 for index, item in enumerate(gallery_items):
     with cols[index % 3]:
-        st.image(item["Image"], use_container_width=True)
+        st.image(item["Image"], width='stretch')
         st.write(f"**{item['Name']}**")
         st.caption(f"ID: {item['ID']} | ${item['Price']:.2f}")
